@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import EmotionTimeGraph from '../components/EmotionTimeGraph';
+import {toggleRender} from '../actions';
 
 const mapStateToProps = state => {
   return {
@@ -51,12 +52,17 @@ const mapStateToProps = state => {
                 return acc;
             }
         }, -1);
-    })
+    }),
+    rerender: state.rerender
   };
 }
 
 const mapDispatchToProps = dispatch => {
-  return {};
+  return {
+      toggleRender: () => {
+          dispatch(toggleRender())
+      }
+  };
 }
 
 const EmotionTimeGraphContainer = connect(

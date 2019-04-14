@@ -3,7 +3,15 @@ import EventList from '../components/EventList'
 
 const mapStateToProps = state => {
   return {
-    events: state.events
+    events: state.events.sort((a, b) => {
+      if (a.date > b.date) {
+        return -1;
+      } else if (a.date < b.date) {
+        return 1;
+      } else {
+        return 0;
+      }
+    })
   }
 }
 

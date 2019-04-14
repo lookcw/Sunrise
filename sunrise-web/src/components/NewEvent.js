@@ -20,7 +20,7 @@ class NewEvent extends Component {
     }
 
     makeEvent() {
-        this.props.addEvent(this.state)
+        this.props.addEvent(this.state/*{text: this.state.text, date: new Date(this.state.date.getFullYear() +"-"+this.state.date.getMonth()+"-"+this.state.date.getDate())}*/)
     }
 
     render() {
@@ -29,7 +29,7 @@ class NewEvent extends Component {
                 <div className="row justify-content-center">
                     <div className="newevent col-6">
                         <input onChange={this.textHandler.bind(this)} type="text" placeholder="Text description of event..." className="event-text text-input"/>
-                        <Dropdown options={this.props.dates} onChange={this.dateHandler.bind(this)} value={this.props.dates[0]} placeholder="Select an option..."/>
+                        <Dropdown options={this.props.dates} onChange={this.dateHandler.bind(this)} value={"Select a date..."} placeholder="Select an option..."/>
                         <button type="button" className="submit-btn btn btn-primary btn-sm" onClick={this.makeEvent.bind(this)}>Create Event</button>
                     </div>
                 </div>
