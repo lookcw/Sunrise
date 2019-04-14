@@ -26,13 +26,13 @@ for i in range(1,len(sys.argv)):
 
 
 data = pd.read_csv('text_emotion.csv')
-print(data['sentiment'].value_counts())
+#print(data['sentiment'].value_counts())
 
 sentiments = ['sadness', 'happiness', 'love', 'hate', 'worry']
 n_classes = len(sentiments)
 
 data = data.loc[data['sentiment'].isin(sentiments)]
-print(data['sentiment'].value_counts())
+#print(data['sentiment'].value_counts())
 
 contents = data['content']
 contents = contents.tolist()
@@ -45,11 +45,11 @@ vocab_size = len(set(total)) #around 42000 unique words
 
 labels = data['sentiment'].tolist()
 labels = np.array(labels)
-print(labels)
+#print(labels)
 # integer encode
 label_encoder = LabelEncoder()
 integer_encoded = label_encoder.fit_transform(labels)
-print(integer_encoded)
+#print(integer_encoded)
 # binary encode
 onehot_encoder = OneHotEncoder(sparse=False)
 integer_encoded = integer_encoded.reshape(len(integer_encoded), 1)
@@ -119,7 +119,7 @@ if (load):
 	    test_sentences.remove(' \n') 
 	while('' in test_sentences) : 
 	    test_sentences.remove('') 
-	print(test_sentences)
+	#print(test_sentences)
 
 	encoded_test = [one_hot(d, vocab_size) for d in test_sentences]
 	#print(encoded_test)
@@ -132,6 +132,13 @@ if (load):
 	avg_pred = avg_pred*100
 	avg_pred = np.round_(avg_pred)
 	avg_pred = avg_pred.astype(int)
+
+	print('Happiness Score: = ' + str(avg_pred[0]))
+	print('Hate Score: = ' + str(avg_pred[1]))
+	print('Love Score: = ' + str(avg_pred[2]))
+	print('Sadness Score: = ' + str(avg_pred[3]))
+	print('Worry Score: = ' + str(avg_pred[4]))
+	
 
 	# output to json
 	import json
